@@ -1,0 +1,8 @@
+Component,Value,Package,Quantity,Reference,Cost_INR
+ESP32 Dev Board,ESP32-WROOM-32,Module,1,U1,550
+Load Cell + HX711,5kg + 24-bit ADC,Module,1,U2,200
+Servo Motor,SG90,Motor,1,M1,150
+OLED Display,0.96 inch SSD1306,I2C,1,D1,0
+Buzzer,Piezo Active,3.3V,1,BZ1,0
+Buck Converter,5V to 3.3V,Module,2,VR1-VR2,150
+PCB,4-layer,Custom,1,PCB,800

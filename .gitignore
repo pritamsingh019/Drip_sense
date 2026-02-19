@@ -1,0 +1,13 @@
+.pio/
+build/
+*.o
+*.elf
+*.bin
+.vscode/
+.DS_Store
+node_modules/
+.env
+.env.local
+*.log
+__pycache__/
+.next/

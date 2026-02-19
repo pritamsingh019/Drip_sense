@@ -1,0 +1,22 @@
+{
+    "calibration": {
+        "zero_offset": 0,
+        "scale_factor": 1.0
+    },
+    "network": {
+        "wifi_ssid": "",
+        "wifi_pass": "",
+        "mqtt_broker": "mqtts://broker.dripsense.io",
+        "mqtt_port": 8883
+    },
+    "device": {
+        "device_id": "DS-ESP32-001"
+    },
+    "safety": {
+        "low_fluid_threshold_g": 10.0,
+        "free_flow_multiplier": 1.5,
+        "flow_stall_timeout_ms": 30000,
+        "servo_clamp_angle": 90,
+        "servo_open_angle": 0
+    }
+}

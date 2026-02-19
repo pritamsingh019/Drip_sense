@@ -345,8 +345,128 @@ drip-sense/
 ├── .gitignore                               # Ignore .pio/, build/, *.o, *.elf, credentials
 ├── .clang-format                            # Code style: LLVM-based, 4-space indent, 100-col line length
 ├── LICENSE                                  # MIT License
-└── CHANGELOG.md                             # Version history and release notes
+├── CHANGELOG.md                             # Version history and release notes
+│
+├── 📁 dashboard/                            # ── Web Dashboard (Next.js 14) ──
+│   │
+│   ├── README.md                            # Dashboard project overview & setup
+│   ├── package.json                         # Node.js dependencies & scripts
+│   ├── tsconfig.json                        # TypeScript configuration
+│   ├── tailwind.config.ts                   # Tailwind CSS theme & design tokens
+│   ├── postcss.config.js                    # PostCSS configuration
+│   ├── next.config.js                       # Next.js configuration
+│   ├── .env.example                         # Environment variables template
+│   │
+│   ├── 📁 src/                              # ── Dashboard Source Code ──
+│   │   │
+│   │   ├── 📁 app/                          # ── Next.js App Router (Pages) ──
+│   │   │   │
+│   │   │   ├── layout.tsx                   # Root layout (dark theme, fonts, metadata)
+│   │   │   ├── page.tsx                     # Landing page (/)
+│   │   │   │
+│   │   │   ├── 📁 login/                   # 🔐 Login Page
+│   │   │   │   └── page.tsx                 #   URL: /login
+│   │   │   │                                #   Role-based auth (Admin, Doctor, Nurse)
+│   │   │   │
+│   │   │   ├── 📁 dashboard/               # 🏠 Dashboard Home (Ward Overview)
+│   │   │   │   └── page.tsx                 #   URL: /dashboard
+│   │   │   │                                #   KPI cards, bed cards by ward, live alert feed
+│   │   │   │
+│   │   │   ├── 📁 patients/                # 👥 Patient Management
+│   │   │   │   ├── page.tsx                 #   URL: /patients
+│   │   │   │   │                            #   Patient table, search, filter, add new patient
+│   │   │   │   └── 📁 [patientId]/         # 👤 Patient Detail (Dynamic Route)
+│   │   │   │       └── page.tsx             #   URL: /patients/[patientId]
+│   │   │   │                                #   Live telemetry, infusion history, clinical notes
+│   │   │   │
+│   │   │   ├── 📁 alerts/                  # 🔔 Alert Center
+│   │   │   │   └── page.tsx                 #   URL: /alerts
+│   │   │   │                                #   Active/acknowledged/resolved alerts, escalation
+│   │   │   │
+│   │   │   ├── 📁 analytics/               # 📊 Analytics & Reports
+│   │   │   │   └── page.tsx                 #   URL: /analytics
+│   │   │   │                                #   KPI trends, charts, fluid usage, device uptime
+│   │   │   │
+│   │   │   ├── 📁 devices/                 # 📟 Device Management
+│   │   │   │   └── page.tsx                 #   URL: /devices
+│   │   │   │                                #   Device list, config, OTA updates, health stats
+│   │   │   │
+│   │   │   └── 📁 settings/                # ⚙️ Settings
+│   │   │       └── page.tsx                 #   URL: /settings
+│   │   │                                    #   Hospital profile, RBAC, notifications, thresholds
+│   │   │
+│   │   ├── 📁 components/                  # ── Reusable UI Components ──
+│   │   │   │
+│   │   │   ├── 📁 layout/                  # Layout components
+│   │   │   │   ├── Sidebar.tsx              # Side navigation (Home, Patients, Devices, etc.)
+│   │   │   │   └── Header.tsx               # Top bar (notifications, user, theme toggle)
+│   │   │   │
+│   │   │   ├── 📁 cards/                   # Card components
+│   │   │   │   ├── BedCard.tsx              # Patient bed card (status, fluid %, flow, ETA)
+│   │   │   │   └── KpiCard.tsx              # KPI summary card (value + trend)
+│   │   │   │
+│   │   │   ├── 📁 charts/                  # Chart components (Recharts)
+│   │   │   │   ├── WeightChart.tsx          # Weight vs Time area chart
+│   │   │   │   ├── FlowRateChart.tsx        # Flow Rate line chart + reference line
+│   │   │   │   └── AlertsBarChart.tsx       # Alerts per day stacked bar chart
+│   │   │   │
+│   │   │   └── 📁 ui/                      # Base UI primitives
+│   │   │       ├── Badge.tsx                # Status badge (success/warning/danger)
+│   │   │       └── Button.tsx               # Button (primary/danger/ghost variants)
+│   │   │
+│   │   ├── 📁 lib/                         # ── Utility Libraries ──
+│   │   │   ├── mqtt.ts                      # MQTT.js WebSocket client for live telemetry
+│   │   │   ├── api.ts                       # REST API client (fetch wrappers)
+│   │   │   └── auth.ts                      # NextAuth.js configuration (RBAC)
+│   │   │
+│   │   ├── 📁 hooks/                       # ── Custom React Hooks ──
+│   │   │   ├── useTelemetry.ts              # Real-time device telemetry subscription
+│   │   │   └── useAlerts.ts                 # Real-time alert notifications
+│   │   │
+│   │   ├── 📁 types/                       # ── TypeScript Type Definitions ──
+│   │   │   └── index.ts                     # Patient, Device, Telemetry, Alert, Session types
+│   │   │
+│   │   └── 📁 styles/                      # ── Stylesheets ──
+│   │       └── globals.css                  # Tailwind directives, fonts, CSS variables
+│   │
+│   └── 📁 prisma/                          # ── Database Schema (Prisma ORM) ──
+│       └── schema.prisma                    # PostgreSQL models: Patient, Device, Session,
+│                                            #   Telemetry, Alert, ClinicalNote, User
+│
+└── 📁 docs/                                # ── Documentation Suite ──
+    │
+    ├── README.md                            # Project overview & documentation index
+    ├── prd.md                               # Product Requirements Document
+    ├── architecture.md                      # Software Architecture
+    ├── firmware_design.md                   # Firmware Design
+    ├── algorithms.md                        # Core Algorithms
+    ├── api_spec.md                          # Cloud API & Data Format
+    ├── dashboard_design.md                  # Dashboard UI/UX Design & Page Specs
+    ├── calibration.md                       # Calibration & Setup Guide
+    ├── testing.md                           # Testing & Validation Plan
+    ├── deployment.md                        # Firmware Deployment Guide
+    ├── troubleshooting.md                   # Troubleshooting Guide
+    ├── folder_structure.md                  # THIS FILE — Project folder structure
+    ├── implementation_plan.md               # Phase-by-phase implementation plan
+    ├── setup.md                             # Setup guide
+    ├── guide.md                             # Full project guide
+    └── task.md                              # Task tracking
 ```
+
+---
+
+## Dashboard Page Routes
+
+| # | Page | URL Path | File | Purpose |
+|---|---|---|---|---|
+| 1 | **Login** | `/login` | `dashboard/src/app/login/page.tsx` | Role-based authentication (Admin, Doctor, Nurse) |
+| 2 | **Dashboard Home** | `/dashboard` | `dashboard/src/app/dashboard/page.tsx` | Ward overview — KPI cards, bed cards, live alert feed |
+| 3 | **Patient Management** | `/patients` | `dashboard/src/app/patients/page.tsx` | Patient database with search, filter, CRUD, pagination |
+| 4 | **Patient Detail** | `/patients/[patientId]` | `dashboard/src/app/patients/[patientId]/page.tsx` | Live telemetry, infusion history, clinical notes |
+| 5 | **Alert Center** | `/alerts` | `dashboard/src/app/alerts/page.tsx` | Alarm management — acknowledge, resolve, escalate |
+| 6 | **Analytics** | `/analytics` | `dashboard/src/app/analytics/page.tsx` | Historical trends, ward stats, CSV/PDF export |
+| 7 | **Device Management** | `/devices` | `dashboard/src/app/devices/page.tsx` | ESP32 device config, OTA updates, health stats |
+| 8 | **Settings** | `/settings` | `dashboard/src/app/settings/page.tsx` | Hospital profile, RBAC, notifications, thresholds |
 
 ---
 
@@ -362,15 +482,16 @@ drip-sense/
 | `include/` | 1 | — | — | 1 |
 | `test/` | — | 15 | — | 15 |
 | `lib/` | 3 | 1 | — | 4 |
-| **Total source** | **21** | **33** | — | **54** |
-| `docs/` | — | — | 14 `.md` | 14 |
+| **Total firmware** | **21** | **33** | — | **54** |
+| `dashboard/` | — | — | ~25 `.tsx/.ts/.css` | ~25 |
+| `docs/` | — | — | 16 `.md` | 16 |
 | `data/` | — | — | 3 | 3 |
 | `hardware/` | — | — | ~8 | ~8 |
 | `scripts/` | — | — | 5 | 5 |
 | `tools/` | — | — | 3 | 3 |
 | `ci/` | — | — | 4 | 4 |
-| Root files | — | — | 5 | 5 |
-| **Grand total** | | | | **~96** |
+| Root files | — | — | 6 | 6 |
+| **Grand total** | | | | **~124** |
 
 ---
 
